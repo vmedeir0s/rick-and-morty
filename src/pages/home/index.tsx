@@ -16,7 +16,7 @@ export default function Home() {
 
     const loadTimer = setTimeout(() => {
       getData();
-    }, 1300);
+    }, 1100);
 
     return () => {
       clearTimeout(loadTimer);

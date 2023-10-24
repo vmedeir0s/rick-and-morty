@@ -9,14 +9,20 @@ export default function Personagens() {
   const [characters, setCharactes] = useState<CharacterType[]>([]);
 
   useEffect(() => {
+    setLoading(true);
     const getData = async () => {
-      setLoading(true);
       const data = await getCharacters(page);
       setCharactes(data);
       setLoading(false);
     };
 
-    getData();
+    const loadTimer = setTimeout(() => {
+      getData();
+    }, 900);
+
+    return () => {
+      clearTimeout(loadTimer);
+    };
   }, [page]);
 
   if (loading) return <Loading />;
